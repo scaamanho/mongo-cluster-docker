@@ -6,7 +6,11 @@ services:
         ports:
             - "30012:27017"
 # TODO: Setear la security key            
-        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth
+        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth --dbpath /data/db --keyFile /config/keyfile/mongodb-keyfile
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ${DATA_DIR}/mongors1n2:/data/db
+            - ./cfg:/cfg  
         restart: always
 
     mongo-1-3:
@@ -15,7 +19,11 @@ services:
         ports:
             - "30013:27017"
 # TODO: Setear la security key              
-        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth
+        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth --dbpath /data/db
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ${DATA_DIR}/mongors1n3:/data/db
+            - ./cfg:/cfg  
         restart: always 
 
     mongo-1-1:
@@ -24,7 +32,11 @@ services:
         ports:
             - "30011:27017"
 # TODO: Setear la security key              
-        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth
+        command: mongod --replSet rs1 --shardsvr --port 27017 --nojournal --oplogSize 16 --noprealloc --smallfiles --auth --dbpath /data/db
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ${DATA_DIR}/mongors1n1:/data/db 
+            - ./cfg:/cfg  
         links:
             - mongo-1-2:mongo-1-2
             - mongo-1-3:mongo-1-3

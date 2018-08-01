@@ -10,6 +10,7 @@ services:
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ${DATA_DIR}/mongors1n2:/data/db
+            - ./cfg:/cfg  
         restart: always
 
     mongo-1-3:
@@ -22,6 +23,7 @@ services:
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ${DATA_DIR}/mongors1n3:/data/db
+            - ./cfg:/cfg  
         restart: always 
 
     mongo-1-1:

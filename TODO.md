@@ -1,9 +1,9 @@
 
 [ ] Establecer la version de mongo a 3.2
 
-[ ] Eliminar sharded 2
+[x] Eliminar sharded 2
 
-[ ] mapear volumenes permanentes
+[x] mapear volumenes permanentes
 	* localtime
 	* ddbb files
 	* config files

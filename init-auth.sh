@@ -1,4 +1,4 @@
-set DATA = /mongodata/
+set DATA_DIR = /mongodata/
 
 docker-compose -f docker-compose.1.auth.yml  -f docker-compose.cnf.auth.yml -f docker-compose.shard.yml rm -f
 
