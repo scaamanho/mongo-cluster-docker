@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+# Se conecta al nodo 1 y setea la configuracion del replicaset
+
 mongodb1=`getent hosts ${MONGO1} | awk '{ print $1 }'`
 mongodb2=`getent hosts ${MONGO2} | awk '{ print $1 }'`
 mongodb3=`getent hosts ${MONGO3} | awk '{ print $1 }'`

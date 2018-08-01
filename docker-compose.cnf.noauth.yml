@@ -27,6 +27,7 @@ services:
             - mongo-cnf-3:mongo-cnf-3
         restart: always
 
+# Se conecta al nodo 1 del serv de conf y setea el replicaset de configuracion
     mongo-cnf-setup:
         container_name: "mongo-cnf-setup"
         image: mongo

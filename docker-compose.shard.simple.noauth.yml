@@ -8,7 +8,6 @@ services:
             - "27017:27017"
         depends_on:
             - "mongo-rs1-setup"
-            - "mongo-rs2-setup"
             - "mongo-cnf-setup"
         links:
             - mongo-cnf-1:mongo-cnf-1
@@ -17,33 +16,26 @@ services:
             - mongo-1-1:mongo-1-1
             - mongo-1-2:mongo-1-2
             - mongo-1-3:mongo-1-3
-            - mongo-2-1:mongo-2-1
-            - mongo-2-2:mongo-2-2
-            - mongo-2-3:mongo-2-3
         command: mongos --configdb cnf-serv/mongo-cnf-1:27017,mongo-cnf-2:27017,mongo-cnf-3:27017
         restart: always
 
-    # mongo-router2:
-    #     container_name: "mongo-router"
-    #     image: mongo
-    #     ports:
-    #         - "27018:27017"
-    #     depends_on:
-    #         - "mongo-rs1-setup"
-    #         - "mongo-rs2-setup"
-    #         - "mongo-cnf-setup"
-    #     links:
-    #         - mongo-cnf-1:mongo-cnf-1
-    #         - mongo-cnf-2:mongo-cnf-2
-    #         - mongo-cnf-3:mongo-cnf-3
-    #         - mongo-1-1:mongo-1-1
-    #         - mongo-1-2:mongo-1-2
-    #         - mongo-1-3:mongo-1-3
-    #         - mongo-2-1:mongo-2-1
-    #         - mongo-2-2:mongo-2-2
-    #         - mongo-2-3:mongo-2-3
-    #     command: mongos --configdb cnf-serv/mongo-cnf-1:27017,mongo-cnf-2:27017,mongo-cnf-3:27017
-    #     restart: always
+     mongo-router-2:
+         container_name: "mongo-router-2"
+         image: mongo
+         ports:
+            - "27018:27017"
+        depends_on:
+            - "mongo-rs1-setup"
+            - "mongo-cnf-setup"
+        links:
+            - mongo-cnf-1:mongo-cnf-1
+            - mongo-cnf-2:mongo-cnf-2
+            - mongo-cnf-3:mongo-cnf-3
+            - mongo-1-1:mongo-1-1
+            - mongo-1-2:mongo-1-2
+            - mongo-1-3:mongo-1-3
+        command: mongos --configdb cnf-serv/mongo-cnf-1:27017,mongo-cnf-2:27017,mongo-cnf-3:27017
+        restart: always
 
 # Se conecta al router y crea los shards
     mongo-shard-setup:
@@ -60,14 +52,10 @@ services:
             - MONGO11=mongo-1-1
             - MONGO12=mongo-1-2
             - MONGO13=mongo-1-3
-            - MONGO21=mongo-2-1
-            - MONGO22=mongo-2-2
-            - MONGO23=mongo-2-3
             - RS1=rs1
-            - RS2=rs2
             - PORT=27017
             - PORT1=27017
             - PORT2=27017
             - PORT3=27017
-        entrypoint: [ "/scripts/init-shard.sh" ]
+        entrypoint: [ "/scripts/init-shard-simple.sh" ]
         restart: on-failure:20
