@@ -3,7 +3,7 @@ version: '2'
 services:
     mongo-router:
         container_name: "mongo-router"
-        image: mongo
+        image: mongo:3.2.20
         ports:
             - "27017:27017"
         depends_on:
@@ -21,7 +21,7 @@ services:
 
      mongo-router-2:
          container_name: "mongo-router-2"
-         image: mongo
+         image: mongo:3.2.20
          ports:
             - "27018:27017"
         depends_on:
@@ -40,7 +40,7 @@ services:
 # Se conecta al router y crea los shards
     mongo-shard-setup:
         container_name: "mongo-shard-setup"
-        image: mongo
+        image: mongo:3.2.20
         depends_on:
             - "mongo-router"
         links:

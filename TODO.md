@@ -39,7 +39,8 @@
 [ ] buenas ideas sobre sharded kyfile y usuarios de bbdd
 https://medium.com/@gargar454/deploy-a-mongodb-cluster-in-steps-9-using-docker-49205e231319
 
-[ ] 
+[ ] Cambiar el arranque de auth para que el mongo-1-1 dependa del 2 y del 3 (idem en cfg) asi el router del shard puede depender de mongo-1-1 y de mongo-cnf-1 y no tener asi que arrancar los contenedores de configuracion.
+
 [ ] 
 [ ] 
 [ ] 
