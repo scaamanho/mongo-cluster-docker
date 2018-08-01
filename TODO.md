@@ -36,7 +36,9 @@
 
 [ ] Incluir key de seguridad en directorio de configuracion
 
-[ ] 
+[ ] buenas ideas sobre sharded kyfile y usuarios de bbdd
+https://medium.com/@gargar454/deploy-a-mongodb-cluster-in-steps-9-using-docker-49205e231319
+
 [ ] 
 [ ] 
 [ ] 
